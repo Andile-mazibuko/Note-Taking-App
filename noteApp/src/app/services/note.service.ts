@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Note } from '../interfaces/note';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,15 @@ export class NoteService {
 
   constructor() { }
 
-  createNote(note: Note){
+  createNote(note: Note): void{
     note.id = new Date().getTime(); // create a unique id based on time the note was created
     this.notes.push(note);
     this.behaviorSubject.next(this.notes);
   }
 
+  getNotes(): Observable<Note[]>
+  {
+    return this.behaviorSubject.asObservable();
+  }
 
 }

@@ -23,10 +23,8 @@ export class FormComponent implements OnInit{
   }
 
   createNewNote()
-  {
-    this.noteService.createNote(this.noteForm.value); 
+  {  
+    this.noteService.createNote(this.noteForm.value);
   }
-
-
 
 }
