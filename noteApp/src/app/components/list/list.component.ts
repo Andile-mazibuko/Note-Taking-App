@@ -9,19 +9,14 @@ import { response } from 'express';
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
-export class ListComponent implements OnInit{
+export class ListComponent {
 
   
   notesFetched!: Note[];
-
+  noteToDelete!: Note;
 constructor(private noteService: NoteService){
- 
+  this.getNotes(); // populate the array with new Variables
 }
-  ngOnInit(): void {
-   // console.log('Test 1','Look whos here');
-   this.getNotes(); 
-   console.log(this.notesFetched);
-  }
 
   getNotes(): void{
     console.log('Get Notes','hi Notes');
@@ -30,5 +25,14 @@ constructor(private noteService: NoteService){
 
       console.log('Get Notes Test',this.notesFetched);
     })
+  }
+  editNote(id: number){
+    
+  }
+
+  deleteNote(id: number)
+  {
+    console.log('TEST 2', 'DELETE')
+    this.noteService.deleteNote(id);
   }
 }

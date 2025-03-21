@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class NoteService {
   notes: Note[] = [];
   behaviorSubject = new BehaviorSubject<Note[]>([]);    //ToTest: parse in this.notes instead of [] 
-
+  isEditMode = new BehaviorSubject<boolean>(false);
   constructor() { }
 
   createNote(note: Note): void{
@@ -17,9 +17,24 @@ export class NoteService {
     this.behaviorSubject.next(this.notes);
   }
 
-  getNotes(): Observable<Note[]>
-  {
+  getNotes(): Observable<Note[]>{
     return this.behaviorSubject.asObservable();
+  }
+  
+  deleteNote(id: number){
+    this.notes = this.notes.filter((note) => note.id = id);
+    this.behaviorSubject.next(this.notes);
+    console.log('TEST 1','Arrived');
+  }
+  editNotes(note: Note){
+    for(let noteAtIndex of this.notes){
+      if(noteAtIndex.id === note.id){
+        //code
+      }
+    }
+  }
+  getIsEditMode():Observable<boolean>{
+   return this.isEditMode.asObservable();
   }
 
 }

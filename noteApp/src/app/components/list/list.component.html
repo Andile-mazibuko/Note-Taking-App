@@ -1,1 +1,9 @@
-<p>list works!</p>
+<div>
+    <h1>Notes</h1>
+    <div *ngFor="let item of notesFetched">
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.content }}</p>
+        <button (click)="editNote(item.id)">Edit</button>
+        <button (click)="deleteNote(item.id)">Delete</button>
+    </div>
+</div>
