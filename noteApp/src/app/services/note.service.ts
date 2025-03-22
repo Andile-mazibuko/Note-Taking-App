@@ -22,7 +22,7 @@ export class NoteService {
   }
   
   deleteNote(id: number){
-    this.notes = this.notes.filter((note) => note.id = id);
+    this.notes = this.notes.filter((note) => note.id !== id);
     this.behaviorSubject.next(this.notes);
     console.log('TODELETE:', id);
   }

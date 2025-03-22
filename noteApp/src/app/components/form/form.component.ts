@@ -19,16 +19,17 @@ export class FormComponent implements OnInit{
       title: ['',Validators.required],
       content: ['',Validators.required]
     })
-  }
+  }/*
   note = {
     id: new Date().getTime(),
     title: this.noteForm.value.title,
     content: this.noteForm.value.content
-  }
+  }*/
 
   createNewNote()
   {  
     this.noteService.createNote(this.noteForm.value);
+    this.noteForm.reset();
   }
 
 }
