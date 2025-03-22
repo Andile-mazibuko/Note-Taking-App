@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { NoteService } from '../../services/note.service';
 import { Note } from '../../interfaces/note';
 import { response } from 'express';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-list',
@@ -11,12 +13,11 @@ import { response } from 'express';
 })
 export class ListComponent {
 
-  
   notesFetched!: Note[];
   noteToDelete!: Note;
-constructor(private noteService: NoteService){
-  this.getNotes(); // populate the array with new Variables
-}
+  constructor(private noteService: NoteService, private router: Router){
+    this.getNotes(); // populate the array with new Variables
+  }
 
   getNotes(): void{
     console.log('Get Notes','hi Notes');
@@ -26,8 +27,10 @@ constructor(private noteService: NoteService){
       console.log('Get Notes Test',this.notesFetched);
     })
   }
-  editNote(id: number){
-    
+  editNote(note: Note){
+    this.noteService.setNoteToEdit(note);
+    this.noteService.setEditMode(true);
+    this.router.navigate(["form"]);      //redirect to form page
   }
 
   deleteNote(id: number)

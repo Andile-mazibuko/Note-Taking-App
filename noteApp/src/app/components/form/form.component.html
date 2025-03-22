@@ -1,5 +1,5 @@
 <div class="main">
-    <h1>Create / Edit Note</h1>
+    <h1>{{isEditMode ? "Edit Note " : "Add new note"}}</h1>
     <form  [formGroup]="noteForm" (ngSubmit)="createNewNote()">
         <div class="input-box">
             <label for="title">Title:</label>
@@ -9,6 +9,6 @@
             <label for="content">Content:</label>
             <input type="text" id="content" formControlName="content" placeholder="Content">
         </div>
-        <button type="submit">Add new Note</button>
+        <button type="submit">{{isEditMode ? "Edit Note" : "Add new note"}}</button>
     </form>
 </div>

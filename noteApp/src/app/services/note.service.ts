@@ -9,6 +9,9 @@ export class NoteService {
   notes: Note[] = [];
   behaviorSubject = new BehaviorSubject<Note[]>([]);    //ToTest: parse in this.notes instead of [] 
   isEditMode = new BehaviorSubject<boolean>(false);
+  tempNote!: Note // To hold the note we want edit
+  editableNote!: Note;
+
   constructor() { }
 
   createNote(note: Note): void{
@@ -27,14 +30,33 @@ export class NoteService {
     console.log('TODELETE:', id);
   }
 
-  editNotes(note: Note){
-    for(let noteAtIndex of this.notes){
-      if(noteAtIndex.id === note.id){
-        //code
+  editNote(note: Note){
+
+    for(let i = 0; i < this.notes.length; i++){
+      
+      if(this.notes[i].id === note.id){
+        this.notes[i] = note;
+        this.setNoteToEdit(this.notes[i]);
+        break;
       }
+
     }
+  
   }
 
+  setEditMode(mode: boolean): void{
+    this.isEditMode.next(mode);
+  }
+
+
+
+  getEditableNote(): Note{
+    return this.editableNote;
+  }
+
+  setNoteToEdit(note: Note){
+    this.editableNote = note;
+  }
 
   getIsEditMode():Observable<boolean>{
    return this.isEditMode.asObservable();
