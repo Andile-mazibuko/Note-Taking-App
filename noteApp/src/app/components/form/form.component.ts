@@ -33,22 +33,13 @@ export class FormComponent implements OnInit{
     })
   }
   
-  /*
-  note = {
-    id: new Date().getTime(),
-    title: this.noteForm.value.title,
-    content: this.noteForm.value.content
-  }*/
-
   createNewNote(){
 
     if(this.isEditMode){
-        //1. get values of the form
         const note = this.noteForm.value;
         note.id = this.noteService.getEditableNote().id;
         this.noteService.editNote(note);
 
-        //console.log('TEST 123456', note)
         this.noteService.setEditMode(false);
         this.router.navigate(["list"]);
               
