@@ -24,8 +24,9 @@ export class NoteService {
   deleteNote(id: number){
     this.notes = this.notes.filter((note) => note.id = id);
     this.behaviorSubject.next(this.notes);
-    console.log('TEST 1','Arrived');
+    console.log('TODELETE:', id);
   }
+
   editNotes(note: Note){
     for(let noteAtIndex of this.notes){
       if(noteAtIndex.id === note.id){
@@ -33,6 +34,8 @@ export class NoteService {
       }
     }
   }
+
+
   getIsEditMode():Observable<boolean>{
    return this.isEditMode.asObservable();
   }

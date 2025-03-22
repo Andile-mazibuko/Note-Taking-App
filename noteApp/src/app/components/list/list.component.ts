@@ -32,7 +32,6 @@ constructor(private noteService: NoteService){
 
   deleteNote(id: number)
   {
-    console.log('TEST 2', 'DELETE')
     this.noteService.deleteNote(id);
   }
 }

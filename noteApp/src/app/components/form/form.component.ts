@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Note } from '../../interfaces/note';
 import { NoteService } from '../../services/note.service';
-
 @Component({
   selector: 'app-form',
   standalone: false,
@@ -20,6 +19,11 @@ export class FormComponent implements OnInit{
       title: ['',Validators.required],
       content: ['',Validators.required]
     })
+  }
+  note = {
+    id: new Date().getTime(),
+    title: this.noteForm.value.title,
+    content: this.noteForm.value.content
   }
 
   createNewNote()
