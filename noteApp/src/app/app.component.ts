@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'noteApp';
+  constructor(private transServ: TranslateService){
+    const defLang = navigator.language.split('-')[0];
+    this.transServ.use(defLang);
+  }
+
 }
